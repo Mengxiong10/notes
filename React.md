@@ -5,7 +5,7 @@
 1. 创建FiberRoot -> updateQueue (element: <App />)
 2. workloop -> 创建替死鬼 workInProgress， 然后beginwork(current, workInProgress)
 3. 如果是组件执行render, 调度阶段如果有componentDidMount, flags 加上update, 函数组件的钩子useEffect等副作用的钩子执行的时候也会在这个fiber的flags加上update | passive, 如果是context, context value 入栈， 然后调度子元素，创建子元素fiber，设置副作用为placement
-4. completeUnitOfWork, 深度优先的情况下， 每次遍历到底， 比如到text了，创建textnode，如果有siblings,则beginWork(siblings), 没有siblings从继续从returnFiber complete, 对于div创建dom, 然后appendChild，设置属性， 如果是组件有副作用（componentdidMount）, 设置returnFiber的firstEffect和lastEffct， 值是这个组件的fiber, 这个是链表
+4. completeUnitOfWork, 深度优先的情况下， 每次遍历到底， 比如到text了，创建textnode，如果有siblings,则beginWork(siblings), 没有siblings从继续从returnFiber complete, 对于div创建dom, 然后appendChild，设置属性， 如果是组件有副作用（componentdidMount）, 设置returnFiber的firstEffect和lastEffct， 值是这个组件的fiber, 这个是链表, 最后commin 阶段取出来有副作用的fiber commit
 
 
 
